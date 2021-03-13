@@ -1,0 +1,223 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>JavaScript Clock 88</title>
+      <style>
+          body{
+              background: #deefd7;
+          }
+          @font-face{
+              font-family:kaushan;
+              src: url("img/KaushanScript-Regular.ttf");
+          }
+          #clock{
+              position: absolute;
+              top:100px;
+        }
+          #arrow{
+            position: absolute;
+            width: 10px;
+            height: 180px;
+            background: #04a575;
+            top:72px;
+            left:252px;
+            transition:transform 3s;
+               z-index: 1;
+/*
+            transform: rotate(30deg);
+            transform-origin: 0% 100%;
+*/
+          }
+          #arrow:after{
+                content: "";
+                width: 0px;
+	            height:0px;
+	            border-bottom: 10px solid #ed6d36;
+	            border-left:9px solid transparent; /* or transparent */
+	            border-right:9px solid transparent;
+	            position:absolute;
+                top:-5%;
+                left:-37%
+          }
+          #arrow:before{
+                content: "";
+                background: #0c1247;
+                width: 20px;
+                height: 20px;
+                border-radius:50%;
+                position:absolute;
+                top:95%;
+                left:-76%
+          }
+          .circ{
+              border-radius:50%;
+              border: double #561d03;
+              width: 500px;
+              height: 500px;
+              position: absolute;
+          }
+          .circ2{
+              border-radius:50%;
+              border: 2px dotted #a3451a;
+              width: 400px;
+              height: 400px;
+              position: absolute;
+              left:10%;
+              top:10%;
+          }
+          #one, #two, #three, #four, #center{
+              position: absolute;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              border: 2px dotted #470c21;
+              font-size: 25px;
+              text-align: center;
+              line-height: 40px;
+              font-family: kaushan;
+          }
+          #one{
+              left:47%;
+          }
+          #three{
+              left:47%;
+              top:457px;
+          }
+          #two{
+              left:91%;
+              top: 228px;
+          }
+          #four{
+              left:1%;
+              top:228px;
+          }
+          #center{
+              background: #0c1247;
+              top:228px;
+              left:231px;
+              z-index: 2;
+          }
+          #arrow2{
+            position: absolute;
+            width: 5px;
+            height: 183px;
+            background: #a2efd8;
+            top:60px;
+            left:255px;
+            transition:transform 30s; 
+              z-index: 0;
+          }
+          #arrow2:after{
+                content: "";
+                width: 0px;
+	            height:0px;
+	            border-bottom: 10px solid #f4df42;
+	            border-left:5px solid transparent; /* or transparent */
+	            border-right:5px solid transparent;
+	            position:absolute;
+                top:-5%;
+                left:-62%
+          }
+      </style>
+  </head>
+  <body>
+      <div id="inp1">
+        <input id="input1" name="place" placeholder="input hours"/><button id="btn1" onclick="f1()">Click</button><button id="btn2" onclick="f3()">Strart</button>
+      </div>
+	<div id="clock" onmouseenter="f2()">
+        <div class="circ">
+            <div id="one">12</div>
+            <div id="two">3</div>
+            <div id="three">6</div>
+            <div id="four">9</div>
+            <div id="center"></div>
+            
+            <div class="circ2"></div>
+        </div>
+<!--        <img src="img/clock-2.png" style="width: 500px;" />  -->
+        <div id="arrow"></div>
+        <div id="arrow2"></div>
+    </div>
+    
+      
+  
+<script>
+	function returned (x){
+			document.getElementById("arrow").style.transform= "rotate("+x+"deg)";
+            document.getElementById("arrow").style.transformOrigin="0% 100%";
+            document.getElementById("btn1").innerHTML="Click";
+            document.getElementById("input1").style.background="white";
+	}
+	
+    function f1(){
+		<!-- if (input1.value<"25" ){ -->
+				<!-- alert("24") -->
+        if(input1.value=="1" || input1.value=="13"){
+			
+				document.getElementById("input1").setAttribute("placeholder", "wrong input");
+			
+			
+//           alert(input1.value);
+			returned(30);
+//          
+        }
+        else if (input1.value=="2" || input1.value=="14"){
+          returned(60); 
+        }
+        else if (input1.value=="3" || input1.value=="15"){
+          returned(90);  
+        }
+        else if (input1.value=="4" || input1.value=="16"){
+           returned(120);  
+        }
+         else if (input1.value=="5" || input1.value=="17"){
+           returned(150);  
+        }
+         else if (input1.value=="6" || input1.value=="18"){
+			 returned(180);
+        }
+         else if (input1.value=="7" || input1.value=="19"){
+			 returned(210);
+        }
+         else if (input1.value=="8" || input1.value=="20"){
+			 returned(240);
+        }
+         else if (input1.value=="9" || input1.value=="21"){
+			  returned(270);
+        }
+         else if (input1.value=="10" || input1.value=="22"){
+			 returned(300);
+        }
+         else if (input1.value=="11" || input1.value=="23"){
+			  returned(330);
+        }
+         else if (input1.value=="12" || input1.value=="24"){
+			  returned(360);
+        }
+        else if (input1.value=="00" ){
+			 returned(360);
+		}
+		
+        else{
+			<!-- alert('kkkk') -->
+           alert("wrong input   "+ input1.value);
+			
+//            document.getElementById("input1").placeholder="Wrong input"; //not working
+			place.setAttribute("placeholder", "wrong input");
+            document.getElementById("input1").style.background="#f9cad7";
+            document.getElementById("btn1").innerHTML="Correct"
+        }
+        }
+    function f2(){
+        var sec1;
+        document.getElementById("arrow").style.transform="rotate(0deg)";
+        }
+    function f3(){
+        document.getElementById("arrow2").style.transformOrigin="0% 100%";
+        document.getElementById("arrow2").style.transform="rotate(360deg)";
+    }
+
+</script>
+  </body>
+</html>
